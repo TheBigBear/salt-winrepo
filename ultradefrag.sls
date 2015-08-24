@@ -1,5 +1,5 @@
 # both 32-bit (x86) AND a 64-bit (AMD64) installer available
-{% set PROGRAM_FILES = "C:\Program Files" %}
+{% set PROGRAM_FILES = "%ProgramFiles%" %}
 ultradefrag:
   6.0.2:
     full_name: 'Ultra Defragmenter 6.0.2'
@@ -11,5 +11,6 @@ ultradefrag:
     install_flags: '/S /FULL=1'
     uninstaller: '{{ PROGRAM_FILES }}\UltraDefrag\uninstall.exe'
     uninstall_flags: '/S'
+    msiexec: False
     locale: en_US
     reboot: False

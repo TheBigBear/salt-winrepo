@@ -1,9 +1,5 @@
 # both 32-bit (x86) AND a 64-bit (AMD64) installer available
-{% if grains['cpuarch'] == 'AMD64' %}
-    {% set PROGRAM_FILES = "C:\Program Files" %}
-{% else %}
-    {% set PROGRAM_FILES = "C:\Program Files (x86)" %}
-{% endif %}
+{% set PROGRAM_FILES = "%ProgramFiles%" %}
 7zip_beta:
   15.05:
     {% if grains['cpuarch'] == 'AMD64' %}
@@ -13,8 +9,9 @@
     full_name: '7-Zip 15.05 beta'
     installer: 'http://heanet.dl.sourceforge.net/project/sevenzip/7-Zip/15.05/7z1505.exe'
     {% endif %}
-    install_flags: '/S /D="{{ PROGRAM_FILES }}\7-zip_beta"'
+    install_flags: '/S /D="C:\Program Files\7-zip_beta"'
     uninstaller: '{{ PROGRAM_FILES }}\7-zip_beta\Uninstall.exe' 
     uninstall_flags: '/S'
+    msiexec: False
     reboot: False
     locale: en_US

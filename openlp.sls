@@ -1,8 +1,8 @@
 # just 32-bit x86 installer available
 {% if grains['cpuarch'] == 'AMD64' %}
-    {% set PROGRAM_FILES = "C:\Program Files (x86)" %}
+    {% set PROGRAM_FILES = "%ProgramFiles(x86)%" %}
 {% else %}
-    {% set PROGRAM_FILES = "C:\Program Files" %}
+    {% set PROGRAM_FILES = "%ProgramFiles%" %}
 {% endif %}
 # Source: http://openlp.org/
 openlp:
@@ -12,5 +12,6 @@ openlp:
     install_flags: '/SP- /VERYSILENT /NORESTART'
     uninstaller: '{{ PROGRAM_FILES }}\OpenLP\unins000.exe'
     uninstall_flags: '/SP- /VERYSILENT /NORESTART'
+    msiexec: False
     locale: en_US
     reboot: False

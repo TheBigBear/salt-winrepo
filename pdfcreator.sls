@@ -1,8 +1,8 @@
 # just 32-bit x86 installer available
 {% if grains['cpuarch'] == 'AMD64' %}
-    {% set PROGRAM_FILES = "C:\Program Files (x86)" %}
+    {% set PROGRAM_FILES = "%ProgramFiles(x86)%" %}
 {% else %}
-    {% set PROGRAM_FILES = "C:\Program Files" %}
+    {% set PROGRAM_FILES = "%ProgramFiles%" %}
 {% endif %}
 pdfcreator:
   1.7.2:
@@ -11,5 +11,6 @@ pdfcreator:
     install_flags: '/VERYSILENT /NORESTART /DontUseYahooSearch /SP- /LOADINF="//linux/install/PDFCreator/setup.inf"'
     uninstaller: '{{ PROGRAM_FILES }}\PDFCreator\unins000.exe'
     uninstall_flags: '/verysilent'
+    msiexec: False
     locale: en_US    
     reboot: False
